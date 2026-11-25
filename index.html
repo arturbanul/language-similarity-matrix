@@ -1018,6 +1018,46 @@
             return (I18N[uiLang].microGroups && I18N[uiLang].microGroups[microKey]) || microKey;
         }
 
+        // Bałkańska liga językowa (Sprachbund)
+        const BALKAN_SPRACHBUND = new Set(['bg', 'mk', 'ro', 'sq', 'el', 'sr']);
+
+        // Precyzyjne nadpisania podobieństwa dla kluczowych par historycznych i kontaktowych
+        const PAIR_OVERRIDES = {
+            // Słowiańskie
+            'cs-sk': 92, 'hr-sr': 93, 'bs-hr': 94, 'bs-sr': 94, 'bs-cnr': 95, 'hr-cnr': 93, 'sr-cnr': 96,
+            'bg-mk': 88, 'be-uk': 84, 'be-ru': 80, 'ru-uk': 78, 'pl-sk': 82, 'pl-cs': 76, 'pl-uk': 70,
+            'pl-be': 72, 'pl-ru': 58, 'sl-hr': 79, 'sl-sr': 76,
+            // Germańskie
+            'da-no': 89, 'no-sv': 86, 'da-sv': 82, 'fo-is': 84, 'de-lb': 82, 'de-nl': 75, 'nl-en': 63,
+            'de-en': 60, 'en-sv': 58, 'en-no': 60, 'en-da': 59,
+            // Romańskie i italskie
+            'es-pt': 89, 'ca-es': 85, 'ca-fr': 78, 'ca-it': 80, 'it-es': 82, 'it-pt': 80, 'it-fr': 85,
+            'it-rm': 81, 'fr-rm': 77, 'la-it': 82, 'la-es': 76, 'la-pt': 75, 'la-fr': 71, 'la-ro': 72,
+            // Bałtyckie, celtyckie, ugrofińskie
+            'lt-lv': 68, 'ga-gd': 78, 'cy-ga': 41, 'et-fi': 74, 'fi-hu': 34, 'et-hu': 32,
+            // Wpływy angielsko-romańskie i inne kontakty europejskie
+            'en-fr': 42, 'en-la': 36, 'en-es': 34, 'en-it': 33, 'en-pt': 33, 'en-ca': 35,
+            'ar-mt': 48, 'it-mt': 34, 'en-mt': 24,
+            'el-la': 28, 'el-it': 24, 'ro-bg': 36, 'ro-sq': 31, 'sq-el': 27,
+            // Azja i Bliski Wschód
+            'hi-ur': 91, 'hi-pa': 76, 'ur-pa': 77, 'bn-hi': 62, 'az-tr': 84,
+            'ar-he': 58, 'ar-am': 44, 'he-am': 42,
+            'zh-yue': 68, 'ja-ko': 46, 'ja-zh': 33, 'ko-zh': 31, 'vi-zh': 30, 'ja-yue': 32, 'ko-yue': 30,
+            'id-tl': 54, 'ar-fa': 26, 'ar-tr': 21, 'fa-tr': 22, 'az-fa': 24, 'ar-sw': 24, 'ar-ha': 19
+        };
+
+        /**
+         * Oblicza wynik podobieństwa (0–100%) między dwoma językami na podstawie
+         * nadpisań eksperckich, taksonomii genealogicznej oraz lig językowych.
+         */
+        function getSimilarity(idA, idB) {
+            if (idA === idB) return 100;
+
+            const pairKey = [idA, idB].sort().join('-');
+            if (PAIR_OVERRIDES[pairKey] !== undefined) {
+                return PAIR_OVERRIDES[pairKey];
+            }
+
             const langA = LANGUAGES.find(l => l.id === idA);
             const langB = LANGUAGES.find(l => l.id === idB);
             if (!langA || !langB) return 2;
@@ -1092,6 +1132,44 @@
                 return 4;
             }
             return 2;
+        }
+
+        /**
+         * Oblicza płynny kolor w przestrzeni HSL od głębokiego niebieskiego (0%)
+         * przez cyjan, zielony, żółty, pomarańczowy aż po intensywny czerwony (100%).
+         */
+        function getHeatColor(score) {
+            const stops = [
+                { pct: 0,   h: 230, s: 85, l: 42 }, // Głęboki niebieski
+                { pct: 20,  h: 195, s: 90, l: 44 }, // Cyjan / Błękit
+                { pct: 40,  h: 145, s: 75, l: 40 }, // Szmaragdowy / Zielony
+                { pct: 60,  h: 54,  s: 92, l: 48 }, // Żółty
+                { pct: 80,  h: 26,  s: 95, l: 50 }, // Pomarańczowy
+                { pct: 100, h: 0,   s: 88, l: 48 }  // Intensywny czerwony
+            ];
+
+            let lower = stops[0];
+            let upper = stops[stops.length - 1];
+
+            for (let i = 0; i < stops.length - 1; i++) {
+                if (score >= stops[i].pct && score <= stops[i + 1].pct) {
+                    lower = stops[i];
+                    upper = stops[i + 1];
+                    break;
+                }
+            }
+
+            const range = upper.pct - lower.pct;
+            const ratio = range === 0 ? 0 : (score - lower.pct) / range;
+
+            const h = Math.round(lower.h + (upper.h - lower.h) * ratio);
+            const s = Math.round(lower.s + (upper.s - lower.s) * ratio);
+            const l = Math.round(lower.l + (upper.l - lower.l) * ratio);
+
+            return {
+                bg: `hsl(${h}, ${s}%, ${l}%)`,
+                text: (score >= 48 && score <= 68) ? '#0f172a' : '#ffffff'
+            };
         }
 
         /**
