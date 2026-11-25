@@ -6,8 +6,8 @@
     
     <!-- Podstawowe meta tagi SEO -->
     <title>Matryca Podobieństwa Języków Świata — Interaktywna Heatmapa 2D</title>
-    <meta name="description" content="Interaktywna matryca 2D (heatmapa) obrazująca stopień pokrewieństwa leksykalnego, strukturalnego i historycznego 25 języków świata od 0% (niebieski) do 100% (czerwony).">
-    <meta name="keywords" content="podobieństwo języków, matryca językowa, heatmapa języków, lingwistyka porównawcza, kognaty, rodziny językowe">
+    <meta name="description" content="Interaktywna matryca 2D (heatmapa) obrazująca stopień pokrewieństwa leksykalnego, strukturalnego i historycznego 65 języków Europy i świata od 0% (niebieski) do 100% (czerwony).">
+    <meta name="keywords" content="podobieństwo języków, matryca językowa, heatmapa języków, języki europejskie, lingwistyka porównawcza, kognaty, rodziny językowe">
     <meta name="author" content="Analiza Lingwistyczna 2D">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#0f172a">
@@ -16,12 +16,12 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pl_PL">
     <meta property="og:title" content="Matryca Podobieństwa Języków Świata — Interaktywna Heatmapa 2D">
-    <meta property="og:description" content="Sprawdź, jak bliskie sobie są języki świata. Interaktywna mapa cieplna 25 języków z porównaniem podstawowego słownictwa i analizą historyczną.">
+    <meta property="og:description" content="Sprawdź, jak bliskie sobie są 65 języków Europy i świata. Interaktywna mapa cieplna z porównaniem słownictwa, kognatami i analizą historyczną.">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Matryca Podobieństwa Języków Świata">
-    <meta name="twitter:description" content="Interaktywna heatmapa 2D pokrewieństwa 25 języków świata z analizą kognatów i rodzin językowych.">
+    <meta name="twitter:title" content="Matryca Podobieństwa Języków Świata (65 języków)">
+    <meta name="twitter:description" content="Interaktywna heatmapa 2D pokrewieństwa wszystkich języków Europy oraz najważniejszych języków świata.">
 
     <!-- Osadzona ikona Favicon SVG (brak zewnętrznych plików lokalnych) -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%232563eb'/%3E%3Cstop offset='50%25' stop-color='%2310b981'/%3E%3Cstop offset='100%25' stop-color='%23dc2626'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold' font-size='26'%3E2D%3C/text%3E%3C/svg%3E">
@@ -114,35 +114,52 @@
                 </div>
                 <div>
                     <h1 class="text-lg sm:text-xl font-bold tracking-tight">Matryca Podobieństwa Języków Świata</h1>
-                    <p class="text-xs text-slate-500 dark:text-slate-400">Analiza pokrewieństwa leksykalnego, strukturalnego i historycznego (25 języków)</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Wszystkie języki Europy i kluczowe języki świata (65 × 65 = 4 225 par)</p>
                 </div>
             </div>
 
-            <!-- Kontrolki: Filtrowanie, Sortowanie, Udostępnianie, Motyw -->
-            <div class="flex flex-wrap items-center gap-2 sm:gap-3">
-                <!-- Filtr rodziny językowej -->
-                <div class="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700">
-                    <label for="familyFilter" class="text-xs font-medium text-slate-500 dark:text-slate-400">Rodzina:</label>
+            <!-- Kontrolki: Wyszukiwarka, Filtr, Sortowanie, Rozmiar, Udostępnianie, Motyw -->
+            <div class="flex flex-wrap items-center gap-2 sm:gap-2.5">
+                <!-- Szybka wyszukiwarka po nazwie języka lub kraju -->
+                <div class="relative flex items-center bg-slate-100 dark:bg-slate-800 px-2.5 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 focus-within:ring-2 focus-within:ring-blue-500/40">
+                    <svg class="w-3.5 h-3.5 text-slate-400 mr-1.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <input type="text" id="searchInput" placeholder="Szukaj języka lub kraju..." class="bg-transparent text-xs sm:text-sm font-medium focus:outline-none text-slate-800 dark:text-slate-200 w-36 sm:w-44 placeholder:text-slate-400">
+                    <button id="clearSearchBtn" title="Wyczyść wyszukiwanie" class="hidden text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 ml-1">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+
+                <!-- Filtr regionu / rodziny językowej -->
+                <div class="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-2.5 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <label for="familyFilter" class="text-xs font-medium text-slate-500 dark:text-slate-400">Zakres:</label>
                     <select id="familyFilter" class="bg-transparent text-xs sm:text-sm font-medium focus:outline-none cursor-pointer text-slate-800 dark:text-slate-200">
-                        <option value="ALL" class="dark:bg-slate-800">Wszystkie (25)</option>
-                        <option value="Indoeuropejska" class="dark:bg-slate-800">Indoeuropejska (16)</option>
-                        <option value="Słowiańska" class="dark:bg-slate-800">↳ Słowiańska (4)</option>
-                        <option value="Germańska" class="dark:bg-slate-800">↳ Germańska (4)</option>
-                        <option value="Romańska" class="dark:bg-slate-800">↳ Romańska / Italska (5)</option>
-                        <option value="Afroazjatycka" class="dark:bg-slate-800">Afroazjatycka (2)</option>
-                        <option value="Uralska" class="dark:bg-slate-800">Uralska (2)</option>
-                        <option value="Azjatyckie (inne)" class="dark:bg-slate-800">Wschodnioazjatyckie i Ałtajskie (4)</option>
+                        <option value="ALL" class="dark:bg-slate-800">Wszystkie (65)</option>
+                        <option value="EUROPE" class="dark:bg-slate-800">🇪🇺 Europa (45)</option>
+                        <option value="WORLD" class="dark:bg-slate-800">🌍 Świat poza Europą (20)</option>
+                        <option value="Słowiańska" class="dark:bg-slate-800">↳ Słowiańskie (13)</option>
+                        <option value="Germańska" class="dark:bg-slate-800">↳ Germańskie (9)</option>
+                        <option value="Romańska" class="dark:bg-slate-800">↳ Romańskie / Italskie (8)</option>
+                        <option value="Bałtycka_Celtycka_Uralska" class="dark:bg-slate-800">↳ Bałtyckie, Celtyckie i Uralskie (8)</option>
+                        <option value="Azja_BliskiWschod" class="dark:bg-slate-800">↳ Azjatyckie i Bliski Wschód (19)</option>
+                        <option value="Afryka" class="dark:bg-slate-800">↳ Afrykańskie (4)</option>
                     </select>
                 </div>
 
                 <!-- Sortowanie -->
-                <div class="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700">
+                <div class="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-2.5 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700">
                     <label for="sortOrder" class="text-xs font-medium text-slate-500 dark:text-slate-400">Sortuj:</label>
                     <select id="sortOrder" class="bg-transparent text-xs sm:text-sm font-medium focus:outline-none cursor-pointer text-slate-800 dark:text-slate-200">
-                        <option value="family" class="dark:bg-slate-800">Według pokrewieństwa (klastry)</option>
+                        <option value="family" class="dark:bg-slate-800">Klastry pokrewieństwa</option>
                         <option value="alpha" class="dark:bg-slate-800">Alfabetycznie (A–Z)</option>
-                        <option value="polish" class="dark:bg-slate-800">Podobieństwo do Polskiego</option>
+                        <option value="polish" class="dark:bg-slate-800">Bliskość do Polskiego</option>
                     </select>
+                </div>
+
+                <!-- Rozmiar komórek matrycy -->
+                <div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200 dark:border-slate-700" title="Rozmiar komórek matrycy">
+                    <button data-size="compact" class="size-btn px-2 py-0.5 rounded-lg text-xs font-semibold transition-colors bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm">S</button>
+                    <button data-size="standard" class="size-btn px-2 py-0.5 rounded-lg text-xs font-semibold transition-colors text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">M</button>
+                    <button data-size="large" class="size-btn px-2 py-0.5 rounded-lg text-xs font-semibold transition-colors text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">L</button>
                 </div>
 
                 <!-- Przycisk kopiowania bezpośredniego linku do wybranej pary -->
@@ -197,15 +214,18 @@
                     <span class="text-xs font-bold text-red-600 dark:text-red-400 whitespace-nowrap">100% (Identyczne)</span>
                 </div>
 
-                <!-- Przełącznik wyświetlania liczb w komórkach -->
-                <label class="inline-flex items-center gap-2 cursor-pointer select-none">
-                    <input type="checkbox" id="toggleNumbers" checked class="rounded text-blue-600 focus:ring-blue-500 bg-slate-200 dark:bg-slate-700 border-slate-300 dark:border-slate-600">
-                    <span class="text-xs font-medium text-slate-600 dark:text-slate-300">Pokaż %</span>
-                </label>
+                <!-- Licznik widocznych języków + Przełącznik wyświetlania liczb w komórkach -->
+                <div class="flex items-center gap-3">
+                    <span id="visibleCountBadge" class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-300">65 × 65</span>
+                    <label class="inline-flex items-center gap-1.5 cursor-pointer select-none">
+                        <input type="checkbox" id="toggleNumbers" checked class="rounded text-blue-600 focus:ring-blue-500 bg-slate-200 dark:bg-slate-700 border-slate-300 dark:border-slate-600">
+                        <span class="text-xs font-medium text-slate-600 dark:text-slate-300">Pokaż %</span>
+                    </label>
+                </div>
             </div>
 
             <!-- Kontener przewijania matrycy (bez flex justify-center, aby nigdy nie ucinać lewej krawędzi) -->
-            <div class="relative overflow-auto flex-1 max-h-[75vh] w-full" id="matrixScrollContainer">
+            <div class="relative overflow-auto flex-1 max-h-[76vh] w-full" id="matrixScrollContainer">
                 <div id="matrixWrapper" class="min-w-max p-3 sm:p-5 mx-auto select-none">
                     <!-- Tabela matrycy generowana dynamicznie przez JS -->
                 </div>
@@ -283,12 +303,14 @@
                 <div class="pt-2 border-t border-slate-200 dark:border-slate-800">
                     <span class="text-[11px] font-medium text-slate-400 block mb-2">Ciekawe pary do sprawdzenia:</span>
                     <div class="flex flex-wrap gap-1.5">
-                        <button onclick="selectPairByIds('pl', 'uk')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors">🇵🇱 Polski – 🇺🇦 Ukraiński</button>
-                        <button onclick="selectPairByIds('es', 'pt')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors">🇪🇸 Hiszpański – 🇵🇹 Portugalski</button>
-                        <button onclick="selectPairByIds('en', 'de')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors">🇬🇧 Angielski – 🇩🇪 Niemiecki</button>
-                        <button onclick="selectPairByIds('ar', 'he')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors">🇸🇦 Arabski – 🇮🇱 Hebrajski</button>
-                        <button onclick="selectPairByIds('ja', 'ko')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors">🇯🇵 Japoński – 🇰🇷 Koreański</button>
-                        <button onclick="selectPairByIds('pl', 'ja')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors">🇵🇱 Polski – 🇯🇵 Japoński</button>
+                        <button onclick="selectPairByIds('pl', 'sk')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors">🇵🇱 Polski – 🇸🇰 Słowacki</button>
+                        <button onclick="selectPairByIds('hr', 'sr')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors">🇭🇷 Chorwacki – 🇷🇸 Serbski</button>
+                        <button onclick="selectPairByIds('lt', 'lv')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors">🇱🇹 Litewski – 🇱🇻 Łotewski</button>
+                        <button onclick="selectPairByIds('fi', 'et')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors">🇫🇮 Fiński – 🇪🇪 Estoński</button>
+                        <button onclick="selectPairByIds('hi', 'ur')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors">🇮🇳 Hindi – 🇵🇰 Urdu</button>
+                        <button onclick="selectPairByIds('zh', 'yue')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors">🇨🇳 Mandaryński – 🇭🇰 Kantoński</button>
+                        <button onclick="selectPairByIds('ro', 'bg')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors">🇷🇴 Rumuński – 🇧🇬 Bułgarski</button>
+                        <button onclick="selectPairByIds('eu', 'es')" class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors">🏔️ Baskijski – 🇪🇸 Hiszpański</button>
                     </div>
                 </div>
             </div>
@@ -297,7 +319,7 @@
 
     <!-- Stopka informacyjna -->
     <footer class="border-t border-slate-200 dark:border-slate-800 py-4 px-4 sm:px-6 text-center text-xs text-slate-500 dark:text-slate-400">
-        Interaktywna Matryca Podobieństwa Języków Świata (25 × 25) • Wskaźniki oparte na pokrewieństwie genetycznym i leksykalnym.
+        Interaktywna Matryca Podobieństwa Języków Świata (65 × 65) • Wszystkie języki urzędowe Europy i główne języki świata.
     </footer>
 
     <!-- Pływający dymek (Tooltip) przy najechaniu na komórkę -->
@@ -312,138 +334,216 @@
 
     <script>
         /**
-         * Baza 25 reprezentatywnych języków świata wraz z metadanymi,
-         * przykładowymi słowami bazowymi (woda, matka, słońce, ręka, serce) oraz klasyfikacją.
+         * Rozszerzona baza 65 języków: wszystkie języki urzędowe krajów europejskich
+         * oraz najważniejsze języki świata z pełną taksonomią genealogiczną i słownictwem bazowym
+         * [Woda, Matka, Słońce, Ręka, Serce].
          */
         const LANGUAGES = [
-            // Słowiańskie (Indoeuropejska)
-            { id: 'pl', name: 'Polski', short: 'POL', flag: '🇵🇱', macroFamily: 'Indoeuropejska', subFamily: 'Słowiańska', words: ['woda', 'matka', 'słońce', 'ręka', 'serce'] },
-            { id: 'cs', name: 'Czeski', short: 'CZE', flag: '🇨🇿', macroFamily: 'Indoeuropejska', subFamily: 'Słowiańska', words: ['voda', 'matka', 'slunce', 'ruka', 'srdce'] },
-            { id: 'uk', name: 'Ukraiński', short: 'UKR', flag: '🇺🇦', macroFamily: 'Indoeuropejska', subFamily: 'Słowiańska', words: ['вода (voda)', 'мати (maty)', 'сонце (sonce)', 'рука (ruka)', 'серце (serce)'] },
-            { id: 'ru', name: 'Rosyjski', short: 'ROS', flag: '🇷🇺', macroFamily: 'Indoeuropejska', subFamily: 'Słowiańska', words: ['вода (voda)', 'мать (mat’)', 'солнце (solnce)', 'рука (ruka)', 'сердце (serdce)'] },
+            // ================= EUROPA: SŁOWIAŃSKIE (13) =================
+            { id: 'pl', name: 'Polski', flag: '🇵🇱', region: 'EUROPE', countries: 'Polska', macroFamily: 'Indoeuropejska', subFamily: 'Słowiańska', microGroup: 'Zachodniosłowiańska (lechicka)', words: ['woda', 'matka', 'słońce', 'ręka', 'serce'] },
+            { id: 'cs', name: 'Czeski', flag: '🇨🇿', region: 'EUROPE', countries: 'Czechy', macroFamily: 'Indoeuropejska', subFamily: 'Słowiańska', microGroup: 'Zachodniosłowiańska (czesko-słowacka)', words: ['voda', 'matka', 'slunce', 'ruka', 'srdce'] },
+            { id: 'sk', name: 'Słowacki', flag: '🇸🇰', region: 'EUROPE', countries: 'Słowacja', macroFamily: 'Indoeuropejska', subFamily: 'Słowiańska', microGroup: 'Zachodniosłowiańska (czesko-słowacka)', words: ['voda', 'matka', 'slnko', 'ruka', 'srdce'] },
+            { id: 'uk', name: 'Ukraiński', flag: '🇺🇦', region: 'EUROPE', countries: 'Ukraina', macroFamily: 'Indoeuropejska', subFamily: 'Słowiańska', microGroup: 'Wschodniosłowiańska', words: ['вода (voda)', 'мати (maty)', 'сонце (sonce)', 'рука (ruka)', 'серце (serce)'] },
+            { id: 'be', name: 'Białoruski', flag: '🇧🇾', region: 'EUROPE', countries: 'Białoruś', macroFamily: 'Indoeuropejska', subFamily: 'Słowiańska', microGroup: 'Wschodniosłowiańska', words: ['вада (vada)', 'маці (maci)', 'сонца (sonca)', 'рука (ruka)', 'сэрца (serca)'] },
+            { id: 'ru', name: 'Rosyjski', flag: '🇷🇺', region: 'EUROPE', countries: 'Rosja, Białoruś', macroFamily: 'Indoeuropejska', subFamily: 'Słowiańska', microGroup: 'Wschodniosłowiańska', words: ['вода (voda)', 'мать (mat’)', 'солнце (solnce)', 'рука (ruka)', 'сердце (serdce)'] },
+            { id: 'sl', name: 'Słoweński', flag: '🇸🇮', region: 'EUROPE', countries: 'Słowenia', macroFamily: 'Indoeuropejska', subFamily: 'Słowiańska', microGroup: 'Południowosłowiańska (zachodnia)', words: ['voda', 'mati', 'sonce', 'roka', 'srce'] },
+            { id: 'hr', name: 'Chorwacki', flag: '🇭🇷', region: 'EUROPE', countries: 'Chorwacja, Bośnia i Hercegowina', macroFamily: 'Indoeuropejska', subFamily: 'Słowiańska', microGroup: 'Południowosłowiańska (sztokawska)', words: ['voda', 'majka', 'sunce', 'ruka', 'srce'] },
+            { id: 'bs', name: 'Bośniacki', flag: '🇧🇦', region: 'EUROPE', countries: 'Bośnia i Hercegowina', macroFamily: 'Indoeuropejska', subFamily: 'Słowiańska', microGroup: 'Południowosłowiańska (sztokawska)', words: ['voda', 'majka', 'sunce', 'ruka', 'srce'] },
+            { id: 'sr', name: 'Serbski', flag: '🇷🇸', region: 'EUROPE', countries: 'Serbia, Bośnia i Hercegowina, Czarnogóra', macroFamily: 'Indoeuropejska', subFamily: 'Słowiańska', microGroup: 'Południowosłowiańska (sztokawska)', words: ['вода (voda)', 'мајка (majka)', 'сунце (sunce)', 'рука (ruka)', 'срце (srce)'] },
+            { id: 'cnr', name: 'Czarnogórski', flag: '🇲🇪', region: 'EUROPE', countries: 'Czarnogóra', macroFamily: 'Indoeuropejska', subFamily: 'Słowiańska', microGroup: 'Południowosłowiańska (sztokawska)', words: ['voda', 'majka', 'sunce', 'ruka', 'srce'] },
+            { id: 'bg', name: 'Bułgarski', flag: '🇧🇬', region: 'EUROPE', countries: 'Bułgaria', macroFamily: 'Indoeuropejska', subFamily: 'Słowiańska', microGroup: 'Południowosłowiańska (wschodnia)', words: ['вода (voda)', 'майка (majka)', 'слънце (slănce)', 'ръка (răka)', 'сърце (sărce)'] },
+            { id: 'mk', name: 'Macedoński', flag: '🇲🇰', region: 'EUROPE', countries: 'Macedonia Północna', macroFamily: 'Indoeuropejska', subFamily: 'Słowiańska', microGroup: 'Południowosłowiańska (wschodnia)', words: ['вода (voda)', 'мајка (majka)', 'сонце (sonce)', 'рака (raka)', 'срце (srce)'] },
 
-            // Germańskie (Indoeuropejska)
-            { id: 'de', name: 'Niemiecki', short: 'NIE', flag: '🇩🇪', macroFamily: 'Indoeuropejska', subFamily: 'Germańska', words: ['Wasser', 'Mutter', 'Sonne', 'Hand', 'Herz'] },
-            { id: 'nl', name: 'Niderlandzki', short: 'NID', flag: '🇳🇱', macroFamily: 'Indoeuropejska', subFamily: 'Germańska', words: ['water', 'moeder', 'zon', 'hand', 'hart'] },
-            { id: 'en', name: 'Angielski', short: 'ANG', flag: '🇬🇧', macroFamily: 'Indoeuropejska', subFamily: 'Germańska', words: ['water', 'mother', 'sun', 'hand', 'heart'] },
-            { id: 'sv', name: 'Szwedzki', short: 'SZW', flag: '🇸🇪', macroFamily: 'Indoeuropejska', subFamily: 'Germańska', words: ['vatten', 'moder', 'sol', 'hand', 'hjärta'] },
+            // ================= EUROPA: GERMAŃSKIE (9) =================
+            { id: 'de', name: 'Niemiecki', flag: '🇩🇪', region: 'EUROPE', countries: 'Niemcy, Austria, Szwajcaria, Liechtenstein, Belgia, Luksemburg', macroFamily: 'Indoeuropejska', subFamily: 'Germańska', microGroup: 'Zachodniogermańska (kontynentalna)', words: ['Wasser', 'Mutter', 'Sonne', 'Hand', 'Herz'] },
+            { id: 'lb', name: 'Luksemburski', flag: '🇱🇺', region: 'EUROPE', countries: 'Luksemburg', macroFamily: 'Indoeuropejska', subFamily: 'Germańska', microGroup: 'Zachodniogermańska (kontynentalna)', words: ['Waasser', 'Mamm', 'Sonn', 'Hand', 'Häerz'] },
+            { id: 'nl', name: 'Niderlandzki', flag: '🇳🇱', region: 'EUROPE', countries: 'Holandia, Belgia', macroFamily: 'Indoeuropejska', subFamily: 'Germańska', microGroup: 'Zachodniogermańska (dolnofrankońska)', words: ['water', 'moeder', 'zon', 'hand', 'hart'] },
+            { id: 'en', name: 'Angielski', flag: '🇬🇧', region: 'EUROPE', countries: 'Wielka Brytania, Irlandia, Malta, USA, Kanada, Australia', macroFamily: 'Indoeuropejska', subFamily: 'Germańska', microGroup: 'Zachodniogermańska (anglo-fryzyjska)', words: ['water', 'mother', 'sun', 'hand', 'heart'] },
+            { id: 'sv', name: 'Szwedzki', flag: '🇸🇪', region: 'EUROPE', countries: 'Szwecja, Finlandia', macroFamily: 'Indoeuropejska', subFamily: 'Germańska', microGroup: 'Północnogermańska (wschodnia)', words: ['vatten', 'moder', 'sol', 'hand', 'hjärta'] },
+            { id: 'da', name: 'Duński', flag: '🇩🇰', region: 'EUROPE', countries: 'Dania', macroFamily: 'Indoeuropejska', subFamily: 'Germańska', microGroup: 'Północnogermańska (wschodnia)', words: ['vand', 'moder', 'sol', 'hånd', 'hjerte'] },
+            { id: 'no', name: 'Norweski', flag: '🇳🇴', region: 'EUROPE', countries: 'Norwegia', macroFamily: 'Indoeuropejska', subFamily: 'Germańska', microGroup: 'Północnogermańska (skandynawska)', words: ['vann', 'mor', 'sol', 'hånd', 'hjerte'] },
+            { id: 'is', name: 'Islandzki', flag: '🇮🇸', region: 'EUROPE', countries: 'Islandia', macroFamily: 'Indoeuropejska', subFamily: 'Germańska', microGroup: 'Północnogermańska (wyspiarska)', words: ['vatn', 'móðir', 'sól', 'hönd', 'hjarta'] },
+            { id: 'fo', name: 'Farerski', flag: '🇫🇴', region: 'EUROPE', countries: 'Wyspy Owcze (Dania)', macroFamily: 'Indoeuropejska', subFamily: 'Germańska', microGroup: 'Północnogermańska (wyspiarska)', words: ['vatn', 'móðir', 'sól', 'hond', 'hjarta'] },
 
-            // Romańskie / Italskie (Indoeuropejska)
-            { id: 'la', name: 'Łacina', short: 'ŁAC', flag: '🏛️', macroFamily: 'Indoeuropejska', subFamily: 'Romańska', words: ['aqua', 'māter', 'sōl', 'manus', 'cor'] },
-            { id: 'it', name: 'Włoski', short: 'WŁO', flag: '🇮🇹', macroFamily: 'Indoeuropejska', subFamily: 'Romańska', words: ['acqua', 'madre', 'sole', 'mano', 'cuore'] },
-            { id: 'es', name: 'Hiszpański', short: 'HIS', flag: '🇪🇸', macroFamily: 'Indoeuropejska', subFamily: 'Romańska', words: ['agua', 'madre', 'sol', 'mano', 'corazón'] },
-            { id: 'pt', name: 'Portugalski', short: 'POR', flag: '🇵🇹', macroFamily: 'Indoeuropejska', subFamily: 'Romańska', words: ['água', 'mãe', 'sol', 'mão', 'coração'] },
-            { id: 'fr', name: 'Francuski', short: 'FRA', flag: '🇫🇷', macroFamily: 'Indoeuropejska', subFamily: 'Romańska', words: ['eau', 'mère', 'soleil', 'main', 'cœur'] },
+            // ================= EUROPA: ROMAŃSKIE I ITALSKIE (8) =================
+            { id: 'la', name: 'Łacina', flag: '🏛️', region: 'EUROPE', countries: 'Watykan', macroFamily: 'Indoeuropejska', subFamily: 'Romańska', microGroup: 'Italska (klasyczna)', words: ['aqua', 'māter', 'sōl', 'manus', 'cor'] },
+            { id: 'it', name: 'Włoski', flag: '🇮🇹', region: 'EUROPE', countries: 'Włochy, Szwajcaria, San Marino, Watykan', macroFamily: 'Indoeuropejska', subFamily: 'Romańska', microGroup: 'Italo-romańska', words: ['acqua', 'madre', 'sole', 'mano', 'cuore'] },
+            { id: 'rm', name: 'Retoromański', flag: '🇨🇭', region: 'EUROPE', countries: 'Szwajcaria', macroFamily: 'Indoeuropejska', subFamily: 'Romańska', microGroup: 'Gallo-romańska (alpejska)', words: ['aua', 'mamma', 'sulegl', 'maun', 'cor'] },
+            { id: 'fr', name: 'Francuski', flag: '🇫🇷', region: 'EUROPE', countries: 'Francja, Belgia, Szwajcaria, Luksemburg, Monako', macroFamily: 'Indoeuropejska', subFamily: 'Romańska', microGroup: 'Gallo-romańska', words: ['eau', 'mère', 'soleil', 'main', 'cœur'] },
+            { id: 'ca', name: 'Kataloński', flag: '🇦🇩', region: 'EUROPE', countries: 'Andora, Hiszpania', macroFamily: 'Indoeuropejska', subFamily: 'Romańska', microGroup: 'Okcytano-romańska', words: ['aigua', 'mare', 'sol', 'mà', 'cor'] },
+            { id: 'es', name: 'Hiszpański', flag: '🇪🇸', region: 'EUROPE', countries: 'Hiszpania, Ameryka Łacińska', macroFamily: 'Indoeuropejska', subFamily: 'Romańska', microGroup: 'Iberoromańska', words: ['agua', 'madre', 'sol', 'mano', 'corazón'] },
+            { id: 'pt', name: 'Portugalski', flag: '🇵🇹', region: 'EUROPE', countries: 'Portugalia, Brazylia', macroFamily: 'Indoeuropejska', subFamily: 'Romańska', microGroup: 'Iberoromańska', words: ['água', 'mãe', 'sol', 'mão', 'coração'] },
+            { id: 'ro', name: 'Rumuński', flag: '🇷🇴', region: 'EUROPE', countries: 'Rumunia, Mołdawia', macroFamily: 'Indoeuropejska', subFamily: 'Romańska', microGroup: 'Wschodnioromańska', words: ['apă', 'mamă', 'soare', 'mână', 'inimă'] },
 
-            // Pozostałe Indoeuropejskie
-            { id: 'el', name: 'Grecki', short: 'GRE', flag: '🇬🇷', macroFamily: 'Indoeuropejska', subFamily: 'Helleńska', words: ['νερό (neró)', 'μητέρα (mitéra)', 'ήλιος (ílios)', 'χέρι (chéri)', 'καρδιά (kardiá)'] },
-            { id: 'fa', name: 'Perski', short: 'PER', flag: '🇮🇷', macroFamily: 'Indoeuropejska', subFamily: 'Indoirańska', words: ['آب (âb)', 'مادر (mâdar)', 'خورشید (xoršid)', 'دست (dast)', 'دل (del)'] },
-            { id: 'hi', name: 'Hindi', short: 'HIN', flag: '🇮🇳', macroFamily: 'Indoeuropejska', subFamily: 'Indoirańska', words: ['पानी (pānī)', 'माता (mātā)', 'सूर्य (sūrya)', 'हाथ (hāth)', 'दिल (dil)'] },
+            // ================= EUROPA: BAŁTYCKIE, CELTYCKIE, HELLEŃSKIE, ALBAŃSKIE (7) =================
+            { id: 'lt', name: 'Litewski', flag: '🇱🇹', region: 'EUROPE', countries: 'Litwa', macroFamily: 'Indoeuropejska', subFamily: 'Bałtycka', microGroup: 'Wschodniobałtycka', words: ['vanduo', 'motina', 'saulė', 'ranka', 'širdis'] },
+            { id: 'lv', name: 'Łotewski', flag: '🇱🇻', region: 'EUROPE', countries: 'Łotwa', macroFamily: 'Indoeuropejska', subFamily: 'Bałtycka', microGroup: 'Wschodniobałtycka', words: ['ūdens', 'māte', 'saule', 'roka', 'sirds'] },
+            { id: 'ga', name: 'Irlandzki', flag: '🇮🇪', region: 'EUROPE', countries: 'Irlandia', macroFamily: 'Indoeuropejska', subFamily: 'Celtycka', microGroup: 'Goidelska', words: ['uisce', 'máthair', 'grian', 'lámh', 'croí'] },
+            { id: 'gd', name: 'Szkocki gaelicki', flag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', region: 'EUROPE', countries: 'Wielka Brytania (Szkocja)', macroFamily: 'Indoeuropejska', subFamily: 'Celtycka', microGroup: 'Goidelska', words: ['uisge', 'màthair', 'grian', 'làmh', 'cridhe'] },
+            { id: 'cy', name: 'Walijski', flag: '🏴󠁧󠁢󠁷󠁬󠁳󠁿', region: 'EUROPE', countries: 'Wielka Brytania (Walia)', macroFamily: 'Indoeuropejska', subFamily: 'Celtycka', microGroup: 'Brytańska', words: ['dŵr', 'mam', 'haul', 'llaw', 'calon'] },
+            { id: 'el', name: 'Grecki', flag: '🇬🇷', region: 'EUROPE', countries: 'Grecja, Cypr', macroFamily: 'Indoeuropejska', subFamily: 'Helleńska', microGroup: 'Grecka', words: ['νερό (neró)', 'μητέρα (mitéra)', 'ήλιος (ílios)', 'χέρι (chéri)', 'καρδιά (kardiá)'] },
+            { id: 'sq', name: 'Albański', flag: '🇦🇱', region: 'EUROPE', countries: 'Albania, Kosowo, Macedonia Północna', macroFamily: 'Indoeuropejska', subFamily: 'Albańska', microGroup: 'Albańska', words: ['ujë', 'nënë', 'diell', 'dorë', 'zemër'] },
 
-            // Afroazjatyckie
-            { id: 'ar', name: 'Arabski', short: 'ARA', flag: '🇸🇦', macroFamily: 'Afroazjatycka', subFamily: 'Semicka', words: ['ماء (māʾ)', 'أم (ʾumm)', 'شمس (šams)', 'يد (yad)', 'قلب (qalb)'] },
-            { id: 'he', name: 'Hebrajski', short: 'HEB', flag: '🇮🇱', macroFamily: 'Afroazjatycka', subFamily: 'Semicka', words: ['מים (mayim)', 'אם (em)', 'שמש (shemesh)', 'יד (yad)', 'לב (lev)'] },
+            // ================= EUROPA: URALSKIE, IZOLOWANE, MALTAŃSKI, KAUKASKIE I TURECKI (8) =================
+            { id: 'fi', name: 'Fiński', flag: '🇫🇮', region: 'EUROPE', countries: 'Finlandia', macroFamily: 'Uralska', subFamily: 'Ugrofińska', microGroup: 'Bałtycko-fińska', words: ['vesi', 'äiti', 'aurinko', 'käsi', 'sydän'] },
+            { id: 'et', name: 'Estoński', flag: '🇪🇪', region: 'EUROPE', countries: 'Estonia', macroFamily: 'Uralska', subFamily: 'Ugrofińska', microGroup: 'Bałtycko-fińska', words: ['vesi', 'ema', 'päike', 'käsi', 'süda'] },
+            { id: 'hu', name: 'Węgierski', flag: '🇭🇺', region: 'EUROPE', countries: 'Węgry', macroFamily: 'Uralska', subFamily: 'Ugrofińska', microGroup: 'Ugryjska', words: ['víz', 'anya', 'nap', 'kéz', 'szív'] },
+            { id: 'mt', name: 'Maltański', flag: '🇲🇹', region: 'EUROPE', countries: 'Malta', macroFamily: 'Afroazjatycka', subFamily: 'Semicka', microGroup: 'Siculo-arabska', words: ['ilma', 'omm', 'xemx', 'id', 'qalb'] },
+            { id: 'eu', name: 'Baskijski', flag: '🏔️', region: 'EUROPE', countries: 'Hiszpania (Kraj Basków), Francja', macroFamily: 'Izolowany', subFamily: 'Baskijska', microGroup: 'Izolowany', words: ['ura', 'ama', 'eguzkia', 'eskua', 'bihotza'] },
+            { id: 'hy', name: 'Ormiański', flag: '🇦🇲', region: 'EUROPE', countries: 'Armenia', macroFamily: 'Indoeuropejska', subFamily: 'Ormiańska', microGroup: 'Ormiańska', words: ['ջուր (jur)', 'մայր (mayr)', 'արև (arev)', 'ձեռք (dzerk’)', 'սիրտ (sirt)'] },
+            { id: 'ka', name: 'Gruziński', flag: '🇬🇪', region: 'EUROPE', countries: 'Gruzja', macroFamily: 'Kartwelska', subFamily: 'Kartwelska', microGroup: 'Kaukaska', words: ['წყალი (ts’q’ali)', 'დედა (deda)', 'მზე (mze)', 'ხელი (kheli)', 'გული (guli)'] },
+            { id: 'tr', name: 'Turecki', flag: '🇹🇷', region: 'EUROPE', countries: 'Turcja, Cypr', macroFamily: 'Turkijska', subFamily: 'Turkijska', microGroup: 'Oguzyjska', words: ['su', 'anne', 'güneş', 'el', 'kalp'] },
 
-            // Uralskie
-            { id: 'fi', name: 'Fiński', short: 'FIŃ', flag: '🇫🇮', macroFamily: 'Uralska', subFamily: 'Ugrofińska', words: ['vesi', 'äiti', 'aurinko', 'käsi', 'sydän'] },
-            { id: 'hu', name: 'Węgierski', short: 'WĘG', flag: '🇭🇺', macroFamily: 'Uralska', subFamily: 'Ugrofińska', words: ['víz', 'anya', 'nap', 'kéz', 'szív'] },
+            // ================= ŚWIAT: AZJA ZACHODNIA I POŁUDNIOWA (7) =================
+            { id: 'az', name: 'Azerski', flag: '🇦🇿', region: 'WORLD', countries: 'Azerbejdżan', macroFamily: 'Turkijska', subFamily: 'Turkijska', microGroup: 'Oguzyjska', words: ['su', 'ana', 'günəş', 'əl', 'ürək'] },
+            { id: 'fa', name: 'Perski', flag: '🇮🇷', region: 'WORLD', countries: 'Iran, Afganistan (dari), Tadżykistan', macroFamily: 'Indoeuropejska', subFamily: 'Indoirańska', microGroup: 'Irańska', words: ['آب (âb)', 'مادر (mâdar)', 'خورشید (xoršid)', 'دست (dast)', 'دل (del)'] },
+            { id: 'hi', name: 'Hindi', flag: '🇮🇳', region: 'WORLD', countries: 'Indie', macroFamily: 'Indoeuropejska', subFamily: 'Indoirańska', microGroup: 'Indoaryjska (hindustani)', words: ['पानी (pānī)', 'माता (mātā)', 'सूर्य (sūrya)', 'हाथ (hāth)', 'दिल (dil)'] },
+            { id: 'ur', name: 'Urdu', flag: '🇵🇰', region: 'WORLD', countries: 'Pakistan, Indie', macroFamily: 'Indoeuropejska', subFamily: 'Indoirańska', microGroup: 'Indoaryjska (hindustani)', words: ['پانی (pānī)', 'ماں (mā̃)', 'سورج (sūraj)', 'ہاتھ (hāth)', 'دل (dil)'] },
+            { id: 'bn', name: 'Bengalski', flag: '🇧🇩', region: 'WORLD', countries: 'Bangladesz, Indie', macroFamily: 'Indoeuropejska', subFamily: 'Indoirańska', microGroup: 'Indoaryjska (wschodnia)', words: ['জল (jol)', 'মা (ma)', 'সূর্য (shurjo)', 'হাত (hat)', 'হৃদয় (hridoy)'] },
+            { id: 'pa', name: 'Pendżabski', flag: '🇮🇳', region: 'WORLD', countries: 'Indie, Pakistan', macroFamily: 'Indoeuropejska', subFamily: 'Indoirańska', microGroup: 'Indoaryjska (północno-zachodnia)', words: ['ਪਾਣੀ (pāṇī)', 'ਮਾਂ (mā̃)', 'ਸੂਰਜ (sūraj)', 'ਹੱਥ (hatth)', 'ਦਿਲ (dil)'] },
+            { id: 'ta', name: 'Tamilski', flag: '🇮🇳', region: 'WORLD', countries: 'Indie, Sri Lanka, Singapur', macroFamily: 'Drawidyjska', subFamily: 'Drawidyjska', microGroup: 'Południowodrawidyjska', words: ['நீர் (nīr)', 'அம்மா (ammā)', 'சூரியன் (sūriyan)', 'கை (kai)', 'இதயம் (itayam)'] },
 
-            // Azjatyckie i Ałtajskie
-            { id: 'tr', name: 'Turecki', short: 'TUR', flag: '🇹🇷', macroFamily: 'Azjatyckie (inne)', subFamily: 'Turkijska', words: ['su', 'anne', 'güneş', 'el', 'kalp'] },
-            { id: 'ko', name: 'Koreański', short: 'KOR', flag: '🇰🇷', macroFamily: 'Azjatyckie (inne)', subFamily: 'Koreańska', words: ['물 (mul)', '어머니 (eomeoni)', '해 (hae)', '손 (son)', '심장 (simjang)'] },
-            { id: 'ja', name: 'Japoński', short: 'JAP', flag: '🇯🇵', macroFamily: 'Azjatyckie (inne)', subFamily: 'Japońska', words: ['水 (mizu)', '母 (haha)', '太陽 (taiyō)', '手 (te)', '心臓 (shinzō)'] },
-            { id: 'zh', name: 'Mandaryński', short: 'MAN', flag: '🇨🇳', macroFamily: 'Azjatyckie (inne)', subFamily: 'Chińsko-tybetańska', words: ['水 (shuǐ)', '母亲 (mǔqīn)', '太阳 (tàiyáng)', '手 (shǒu)', '心脏 (xīnzàng)'] },
+            // ================= ŚWIAT: AZJA WSCHODNIA I POŁUDNIOWO-WSCHODNIA (8) =================
+            { id: 'zh', name: 'Mandaryński', flag: '🇨🇳', region: 'WORLD', countries: 'Chiny, Tajwan, Singapur', macroFamily: 'Chińsko-tybetańska', subFamily: 'Chińska', microGroup: 'Sinityczna', words: ['水 (shuǐ)', '母亲 (mǔqīn)', '太阳 (tàiyáng)', '手 (shǒu)', '心脏 (xīnzàng)'] },
+            { id: 'yue', name: 'Kantoński', flag: '🇭🇰', region: 'WORLD', countries: 'Hongkong, Makau, Chiny (Guangdong)', macroFamily: 'Chińsko-tybetańska', subFamily: 'Chińska', microGroup: 'Sinityczna', words: ['水 (seoi2)', '阿媽 (aa3 maa1)', '太陽 (taai3 joeng4)', '手 (sau2)', '心臟 (sam1 zong6)'] },
+            { id: 'ja', name: 'Japoński', flag: '🇯🇵', region: 'WORLD', countries: 'Japonia', macroFamily: 'Japońska', subFamily: 'Japońska', microGroup: 'Japońska', words: ['水 (mizu)', '母 (haha)', '太陽 (taiyō)', '手 (te)', '心臓 (shinzō)'] },
+            { id: 'ko', name: 'Koreański', flag: '🇰🇷', region: 'WORLD', countries: 'Korea Południowa, Korea Północna', macroFamily: 'Koreańska', subFamily: 'Koreańska', microGroup: 'Koreańska', words: ['물 (mul)', '어머니 (eomeoni)', '해 (hae)', '손 (son)', '심장 (simjang)'] },
+            { id: 'vi', name: 'Wietnamski', flag: '🇻🇳', region: 'WORLD', countries: 'Wietnam', macroFamily: 'Austroazjatycka', subFamily: 'Wiet-muong', microGroup: 'Mon-khmer', words: ['nước', 'mẹ', 'mặt trời', 'tay', 'tim'] },
+            { id: 'th', name: 'Tajski', flag: '🇹🇭', region: 'WORLD', countries: 'Tajlandia', macroFamily: 'Dajska', subFamily: 'Dajska', microGroup: 'Tai-kadai', words: ['น้ำ (nám)', 'แม่ (mâe)', 'ดวงอาทิตย์ (duang-āthít)', 'มือ (mūe)', 'หัวใจ (hǔa-jai)'] },
+            { id: 'id', name: 'Indonezyjski', flag: '🇮🇩', region: 'WORLD', countries: 'Indonezja, Malezja (malajski)', macroFamily: 'Austronezyjska', subFamily: 'Malajsko-polinezyjska', microGroup: 'Malajska', words: ['air', 'ibu', 'matahari', 'tangan', 'jantung'] },
+            { id: 'tl', name: 'Tagalski', flag: '🇵🇭', region: 'WORLD', countries: 'Filipiny', macroFamily: 'Austronezyjska', subFamily: 'Malajsko-polinezyjska', microGroup: 'Filipińska', words: ['tubig', 'ina', 'araw', 'kamay', 'puso'] },
 
-            // Niger-Kongo
-            { id: 'sw', name: 'Suahili', short: 'SUA', flag: '🇹🇿', macroFamily: 'Niger-Kongo', subFamily: 'Bantu', words: ['maji', 'mama', 'jua', 'mkono', 'moyo'] }
+            // ================= ŚWIAT: BLISKI WSCHÓD I AFRYKA (5) =================
+            { id: 'ar', name: 'Arabski', flag: '🇸🇦', region: 'WORLD', countries: 'Kraje Ligi Arabskiej (22 państwa)', macroFamily: 'Afroazjatycka', subFamily: 'Semicka', microGroup: 'Centralnosemicka', words: ['ماء (māʾ)', 'أم (ʾumm)', 'شمس (šams)', 'يد (yad)', 'قلب (qalb)'] },
+            { id: 'he', name: 'Hebrajski', flag: '🇮🇱', region: 'WORLD', countries: 'Izrael', macroFamily: 'Afroazjatycka', subFamily: 'Semicka', microGroup: 'Kananejska', words: ['מים (mayim)', 'אם (em)', 'שמש (shemesh)', 'יד (yad)', 'לב (lev)'] },
+            { id: 'am', name: 'Amharski', flag: '🇪🇹', region: 'WORLD', countries: 'Etiopia', macroFamily: 'Afroazjatycka', subFamily: 'Semicka', microGroup: 'Etiosemicka', words: ['ውሃ (wəha)', 'እናት (ənat)', 'ፀሐይ (ṣäḥay)', 'እጅ (əǧ)', 'ልብ (ləbb)'] },
+            { id: 'sw', name: 'Suahili', flag: '🇹🇿', region: 'WORLD', countries: 'Tanzania, Kenia, Uganda, DRK', macroFamily: 'Niger-Kongo', subFamily: 'Bantu', microGroup: 'Bantu wschodnie', words: ['maji', 'mama', 'jua', 'mkono', 'moyo'] },
+            { id: 'ha', name: 'Hausa', flag: '🇳🇬', region: 'WORLD', countries: 'Nigeria, Niger', macroFamily: 'Afroazjatycka', subFamily: 'Czadyjska', microGroup: 'Zachodnioczadyjska', words: ['ruwa', 'uwa', 'rana', 'hannu', 'zuciya'] },
+            { id: 'yo', name: 'Joruba', flag: '🇳🇬', region: 'WORLD', countries: 'Nigeria, Benin', macroFamily: 'Niger-Kongo', subFamily: 'Wolto-nigeryjska', microGroup: 'Joruboidalna', words: ['omi', 'ìyá', 'oòrùn', 'ọwọ́', 'ọkàn'] }
         ];
 
         const CONCEPT_LABELS = ['Woda', 'Matka', 'Słońce', 'Ręka', 'Serce'];
 
         /**
-         * Symetryczna macierz podobieństwa językowego (0 - 100%)
+         * Precyzyjne nadpisania dla kluczowych par językowych (kontinua dialektalne,
+         * bliskie gałęzie oraz silne historyczne kontakty leksykalne).
          */
-        const SIMILARITY_SCORES = {
-            'pl-cs': 76, 'pl-uk': 70, 'pl-ru': 58, 'pl-de': 24, 'pl-nl': 21, 'pl-en': 22, 'pl-sv': 20,
-            'pl-la': 25, 'pl-it': 22, 'pl-es': 21, 'pl-pt': 20, 'pl-fr': 23, 'pl-el': 18, 'pl-fa': 15, 'pl-hi': 14,
-            'pl-ar': 5,  'pl-he': 5,  'pl-fi': 11, 'pl-hu': 12, 'pl-tr': 6,  'pl-ko': 2,  'pl-ja': 2,  'pl-zh': 2,  'pl-sw': 2,
-
-            'cs-uk': 66, 'cs-ru': 56, 'cs-de': 27, 'cs-nl': 22, 'cs-en': 21, 'cs-sv': 20,
-            'cs-la': 24, 'cs-it': 21, 'cs-es': 20, 'cs-pt': 19, 'cs-fr': 21, 'cs-el': 17, 'cs-fa': 14, 'cs-hi': 13,
-            'cs-ar': 4,  'cs-he': 4,  'cs-fi': 10, 'cs-hu': 13, 'cs-tr': 5,  'cs-ko': 2,  'cs-ja': 2,  'cs-zh': 2,  'cs-sw': 2,
-
-            'uk-ru': 78, 'uk-de': 21, 'uk-nl': 19, 'uk-en': 19, 'uk-sv': 19,
-            'uk-la': 21, 'uk-it': 20, 'uk-es': 19, 'uk-pt': 18, 'uk-fr': 20, 'uk-el': 18, 'uk-fa': 15, 'uk-hi': 14,
-            'uk-ar': 5,  'uk-he': 5,  'uk-fi': 10, 'uk-hu': 11, 'uk-tr': 7,  'uk-ko': 2,  'uk-ja': 2,  'uk-zh': 2,  'uk-sw': 2,
-
-            'ru-de': 22, 'ru-nl': 20, 'ru-en': 20, 'ru-sv': 20,
-            'ru-la': 21, 'ru-it': 20, 'ru-es': 19, 'ru-pt': 18, 'ru-fr': 22, 'ru-el': 19, 'ru-fa': 16, 'ru-hi': 15,
-            'ru-ar': 5,  'ru-he': 5,  'ru-fi': 11, 'ru-hu': 10, 'ru-tr': 8,  'ru-ko': 2,  'ru-ja': 2,  'ru-zh': 3,  'ru-sw': 2,
-
-            'de-nl': 75, 'de-en': 60, 'de-sv': 64,
-            'de-la': 26, 'de-it': 25, 'de-es': 24, 'de-pt': 23, 'de-fr': 29, 'de-el': 19, 'de-fa': 16, 'de-hi': 15,
-            'de-ar': 5,  'de-he': 6,  'de-fi': 12, 'de-hu': 11, 'de-tr': 6,  'de-ko': 2,  'de-ja': 2,  'de-zh': 2,  'de-sw': 2,
-
-            'nl-en': 63, 'nl-sv': 62,
-            'nl-la': 25, 'nl-it': 24, 'nl-es': 23, 'nl-pt': 22, 'nl-fr': 31, 'nl-el': 18, 'nl-fa': 15, 'nl-hi': 14,
-            'nl-ar': 5,  'nl-he': 5,  'nl-fi': 11, 'nl-hu': 10, 'nl-tr': 5,  'nl-ko': 2,  'nl-ja': 2,  'nl-zh': 2,  'nl-sw': 3,
-
-            'en-sv': 58,
-            'en-la': 36, 'en-it': 33, 'en-es': 34, 'en-pt': 33, 'en-fr': 42, 'en-el': 21, 'en-fa': 16, 'en-hi': 16,
-            'en-ar': 6,  'en-he': 6,  'en-fi': 11, 'en-hu': 10, 'en-tr': 6,  'en-ko': 4,  'en-ja': 5,  'en-zh': 3,  'en-sw': 4,
-
-            'sv-la': 23, 'sv-it': 22, 'sv-es': 21, 'sv-pt': 20, 'sv-fr': 25, 'sv-el': 18, 'sv-fa': 15, 'sv-hi': 14,
-            'sv-ar': 4,  'sv-he': 4,  'sv-fi': 15, 'sv-hu': 10, 'sv-tr': 5,  'sv-ko': 2,  'sv-ja': 2,  'sv-zh': 2,  'sv-sw': 2,
-
-            'la-it': 82, 'la-es': 76, 'la-pt': 75, 'la-fr': 71, 'la-el': 28, 'la-fa': 17, 'la-hi': 17,
-            'la-ar': 6,  'la-he': 6,  'la-fi': 9,  'la-hu': 10, 'la-tr': 5,  'la-ko': 2,  'la-ja': 2,  'la-zh': 2,  'la-sw': 2,
-
-            'it-es': 82, 'it-pt': 80, 'it-fr': 85, 'it-el': 24, 'it-fa': 16, 'it-hi': 15,
-            'it-ar': 7,  'it-he': 6,  'it-fi': 9,  'it-hu': 10, 'it-tr': 6,  'it-ko': 2,  'it-ja': 2,  'it-zh': 2,  'it-sw': 2,
-
-            'es-pt': 89, 'es-fr': 75, 'es-el': 22, 'es-fa': 16, 'es-hi': 15,
-            'es-ar': 10, 'es-he': 6,  'es-fi': 9,  'es-hu': 9,  'es-tr': 6,  'es-ko': 2,  'es-ja': 2,  'es-zh': 2,  'es-sw': 3,
-
-            'pt-fr': 74, 'pt-el': 21, 'pt-fa': 15, 'pt-hi': 15,
-            'pt-ar': 9,  'pt-he': 6,  'pt-fi': 9,  'pt-hu': 9,  'pt-tr': 6,  'pt-ko': 2,  'pt-ja': 3,  'pt-zh': 2,  'pt-sw': 3,
-
-            'fr-el': 23, 'fr-fa': 17, 'fr-hi': 15,
-            'fr-ar': 8,  'fr-he': 6,  'fr-fi': 9,  'fr-hu': 10, 'fr-tr': 7,  'fr-ko': 2,  'fr-ja': 2,  'fr-zh': 2,  'fr-sw': 3,
-
-            'el-fa': 18, 'el-hi': 17,
-            'el-ar': 8,  'el-he': 8,  'el-fi': 8,  'el-hu': 9,  'el-tr': 11, 'el-ko': 2,  'el-ja': 2,  'el-zh': 2,  'el-sw': 2,
-
-            'fa-hi': 42,
-            'fa-ar': 26, 'fa-he': 11, 'fa-fi': 7,  'fa-hu': 8,  'fa-tr': 22, 'fa-ko': 2,  'fa-ja': 2,  'fa-zh': 3,  'fa-sw': 6,
-
-            'hi-ar': 14, 'hi-he': 8,  'hi-fi': 7,  'hi-hu': 7,  'hi-tr': 14, 'hi-ko': 3,  'hi-ja': 3,  'hi-zh': 4,  'hi-sw': 5,
-
-            'ar-he': 58, 'ar-fi': 4,  'ar-hu': 5,  'ar-tr': 21, 'ar-ko': 2,  'ar-ja': 2,  'ar-zh': 2,  'ar-sw': 24,
-
-            'he-fi': 4,  'he-hu': 5,  'he-tr': 9,  'he-ko': 2,  'he-ja': 2,  'he-zh': 2,  'he-sw': 7,
-
-            'fi-hu': 34, 'fi-tr': 14, 'fi-ko': 4,  'fi-ja': 4,  'fi-zh': 2,  'fi-sw': 2,
-
-            'hu-tr': 18, 'hu-ko': 4,  'hu-ja': 4,  'hu-zh': 2,  'hu-sw': 2,
-
-            'tr-ko': 16, 'tr-ja': 15, 'tr-zh': 4,  'tr-sw': 5,
-
-            'ko-ja': 46, 'ko-zh': 31, 'ko-sw': 1,
-
-            'ja-zh': 33, 'ja-sw': 1,
-
-            'zh-sw': 1
+        const PAIR_OVERRIDES = {
+            // Kontinuum sztokawskie (wzajemnie zrozumiałe standardy)
+            'bs-hr': 96, 'bs-sr': 94, 'bs-cnr': 95, 'hr-sr': 93, 'hr-cnr': 94, 'sr-cnr': 96,
+            // Pozostałe bardzo bliskie pary słowiańskie
+            'cs-sk': 88, 'bg-mk': 85, 'be-uk': 82, 'be-ru': 79, 'ru-uk': 75,
+            'pl-sk': 77, 'pl-cs': 76, 'pl-uk': 70, 'pl-be': 72, 'pl-ru': 58,
+            'hr-sl': 74, 'bs-sl': 73, 'sr-sl': 71, 'cnr-sl': 72,
+            // Bliskie pary germańskie
+            'da-no': 88, 'no-sv': 85, 'da-sv': 81, 'fo-is': 78,
+            'de-lb': 82, 'de-nl': 75, 'lb-nl': 71, 'en-nl': 63, 'de-en': 60, 'en-sv': 58, 'da-en': 59, 'en-no': 60,
+            // Bliskie pary romańskie
+            'es-pt': 89, 'ca-es': 85, 'ca-fr': 79, 'ca-it': 81, 'fr-it': 85, 'es-it': 82, 'it-pt': 80,
+            'it-la': 82, 'es-la': 76, 'pt-la': 75, 'ca-la': 77, 'fr-la': 71, 'la-ro': 72,
+            'it-rm': 78, 'fr-rm': 74, 'it-ro': 75, 'fr-ro': 71, 'es-ro': 70,
+            // Bałtyckie, Celtyckie, Uralskie, Turkijskie, Semickie, Azjatyckie
+            'lt-lv': 68, 'ga-gd': 78, 'cy-ga': 38, 'cy-gd': 37,
+            'et-fi': 71, 'fi-hu': 34, 'et-hu': 32,
+            'az-tr': 76, 'hi-ur': 86, 'bn-hi': 56, 'hi-pa': 68, 'pa-ur': 66, 'bn-pa': 52, 'fa-ur': 38, 'fa-hi': 32,
+            'yue-zh': 66, 'ja-ko': 46, 'ja-zh': 33, 'ko-zh': 31, 'vi-zh': 34, 'ja-yue': 34, 'ko-yue': 32, 'vi-yue': 36,
+            'ar-mt': 48, 'it-mt': 34, 'en-mt': 22, 'ar-he': 58, 'am-ar': 36, 'am-he': 34,
+            'id-tl': 44,
+            // Silne wpływy kontaktowe i zapożyczenia historyczne
+            'en-fr': 42, 'en-la': 36, 'en-es': 34, 'en-it': 33, 'en-pt': 33, 'ca-en': 34,
+            'ar-fa': 26, 'ar-sw': 24, 'ar-tr': 21, 'fa-tr': 22, 'az-fa': 25, 'ar-ha': 19,
+            'eu-es': 18, 'eu-fr': 15, 'bg-ro': 28, 'el-sq': 26, 'ro-sq': 27, 'bg-el': 24, 'el-mk': 24,
+            'hy-ka': 14, 'fa-hy': 24, 'hy-tr': 13, 'ka-ru': 11, 'ka-tr': 10, 'be-lt': 29, 'lt-pl': 28, 'lv-ru': 25
         };
 
+        // Zbiór ligi bałkańskiej (wspólne cechy składniowe i leksykalne)
+        const BALKAN_SPRACHBUND = new Set(['bg', 'mk', 'sr', 'ro', 'sq', 'el']);
+
         /**
-         * Pobiera wynik podobieństwa między dwoma językami
+         * Algorytm obliczający wynik podobieństwa (0–100%) dla dowolnej pary z 65 języków
+         * na podstawie taksonomii genealogicznej, kontaktów leksykalnych i lig językowych.
          */
         function getSimilarity(idA, idB) {
             if (idA === idB) return 100;
-            const key1 = `${idA}-${idB}`;
-            const key2 = `${idB}-${idA}`;
-            if (SIMILARITY_SCORES[key1] !== undefined) return SIMILARITY_SCORES[key1];
-            if (SIMILARITY_SCORES[key2] !== undefined) return SIMILARITY_SCORES[key2];
+
+            const key = [idA, idB].sort().join('-');
+            if (PAIR_OVERRIDES[key] !== undefined) {
+                return PAIR_OVERRIDES[key];
+            }
+
+            const langA = LANGUAGES.find(l => l.id === idA);
+            const langB = LANGUAGES.find(l => l.id === idB);
+            if (!langA || !langB) return 2;
+
+            // 1. Ta sama mikrogrupa
+            if (langA.microGroup === langB.microGroup) {
+                return 74;
+            }
+
+            // 2. Ta sama gałąź (subFamily)
+            if (langA.subFamily === langB.subFamily) {
+                if (langA.subFamily === 'Słowiańska') return 62;
+                if (langA.subFamily === 'Germańska') return 55;
+                if (langA.subFamily === 'Romańska') return 71;
+                if (langA.subFamily === 'Indoirańska') return 40;
+                if (langA.subFamily === 'Celtycka') return 38;
+                if (langA.subFamily === 'Ugrofińska') return 33;
+                if (langA.subFamily === 'Semicka') return 35;
+                return 45;
+            }
+
+            // 3. Ta sama makrorodzina (np. Indoeuropejska lub Afroazjatycka)
+            if (langA.macroFamily === langB.macroFamily && langA.macroFamily !== 'Izolowany') {
+                let baseScore = 18;
+
+                if (langA.macroFamily === 'Indoeuropejska') {
+                    // Bałtyckie i Słowiańskie tworzą bliską nadgałąź bałtosłowiańską
+                    const baltoSlavic = new Set(['Bałtycka', 'Słowiańska']);
+                    if (baltoSlavic.has(langA.subFamily) && baltoSlavic.has(langB.subFamily)) {
+                        baseScore = 27;
+                    }
+                    // Italskie i Celtyckie (hipoteza italo-celtycka + wpływy łacińskie)
+                    const italoCeltic = new Set(['Romańska', 'Celtycka']);
+                    if (italoCeltic.has(langA.subFamily) && italoCeltic.has(langB.subFamily)) {
+                        baseScore = 25;
+                    }
+                    // Europejskie gałęzie IE mają więcej wspólnego słownictwa kulturowego niż z indoirańską
+                    const indoIranian = langA.subFamily === 'Indoirańska' || langB.subFamily === 'Indoirańska';
+                    if (indoIranian) {
+                        baseScore = 15;
+                    } else if (baseScore === 18) {
+                        baseScore = 21;
+                    }
+                } else if (langA.macroFamily === 'Afroazjatycka') {
+                    baseScore = 15;
+                } else if (langA.macroFamily === 'Niger-Kongo') {
+                    baseScore = 16;
+                }
+
+                // Bonus za Ligę Bałkańską
+                if (BALKAN_SPRACHBUND.has(idA) && BALKAN_SPRACHBUND.has(idB)) {
+                    baseScore += 5;
+                }
+
+                return Math.min(95, baseScore);
+            }
+
+            // 4. Różne rodziny językowe — uwzględniamy konwergencję europejską (SAE) i kontakty
+            if (langA.region === 'EUROPE' && langB.region === 'EUROPE') {
+                // Standard Average European (wspólne kalki, internacjonalizmy łacińsko-greckie)
+                if (langA.macroFamily === 'Uralska' || langB.macroFamily === 'Uralska') {
+                    return 10;
+                }
+                if (langA.id === 'eu' || langB.id === 'eu') {
+                    return 11;
+                }
+                return 8;
+            }
+
+            // Minimalne zbieżności przypadkowe i współczesne internacjonalizmy
+            if (langA.id === 'en' || langB.id === 'en') {
+                return 4;
+            }
             return 2;
         }
 
@@ -493,41 +593,63 @@
                 return {
                     label: 'Ten sam język',
                     shortHint: 'Identyczny system językowy (100%).',
-                    description: `Język ${langA.name.toLowerCase()} należy do rodziny ${langA.macroFamily.toLowerCase()}j (gałąź ${langA.subFamily.toLowerCase()}). Porównanie języka samego ze sobą daje pełną zgodność leksykalną i strukturalną.`
+                    description: `Język ${langA.name.toLowerCase()} (${langA.countries}) należy do rodziny ${langA.macroFamily.toLowerCase()}j (gałąź ${langA.subFamily.toLowerCase()}). Porównanie języka samego ze sobą daje pełną zgodność leksykalną i strukturalną.`
+                };
+            }
+
+            if (score >= 90) {
+                return {
+                    label: 'Kontinuum dialektalne / Wzajemna zrozumiałość',
+                    shortHint: `Niemal identyczna gramatyka i słownictwo (${langA.microGroup}).`,
+                    description: `${langA.name} i ${langB.name} są wysoce wzajemnie zrozumiałe i funkcjonują w ramach wspólnego kontinuum (${langA.microGroup}). Różnice dotyczą głównie standardów pisowni, akcentu oraz niewielkiej części leksyki regionalnej.`
                 };
             }
 
             if (langA.subFamily === langB.subFamily) {
-                if (score >= 80) {
+                if (score >= 75) {
                     return {
                         label: 'Bardzo bliskie pokrewieństwo',
                         shortHint: `Ta sama gałąź (${langA.subFamily}), wysoka wzajemna zrozumiałość.`,
-                        description: `${langA.name} i ${langB.name} należą do tej samej gałęzi (${langA.subFamily}). Charakteryzują się ogromną zbieżnością podstawowego słownictwa, zbliżoną składnią i morfologią, co pozwala na częściowe lub wysokie wzajemne zrozumienie.`
+                        description: `${langA.name} i ${langB.name} należą do tej samej gałęzi (${langA.subFamily}). Dzielą zdecydowaną większość podstawowego słownictwa oraz zbliżoną morfologię i składnię, co umożliwia swobodną lub częściową komunikację bez tłumacza.`
                     };
                 }
                 return {
-                    label: 'Bliskie pokrewieństwo (ta sama grupa)',
+                    label: 'Bliskie pokrewieństwo (ta sama gałąź)',
                     shortHint: `Wspólna gałąź ${langA.subFamily}, liczne kognaty.`,
-                    description: `Oba języki wywodzą się ze wspólnego przodka w ramach grupy ${langA.subFamily.toLowerCase()}j (${langA.macroFamily}). Łączy je rdzeń leksykalny oraz zbliżone kategorie gramatyczne, choć ewolucja fonetyczna wprowadziła wyraźne różnice.`
+                    description: `Oba języki wywodzą się ze wspólnego przodka w ramach gałęzi ${langA.subFamily.toLowerCase()}j (${langA.macroFamily}). Łączy je bogaty zasób kognatów oraz zbliżone kategorie gramatyczne, choć historyczne zmiany fonetyczne stworzyły wyraźne odrębności.`
                 };
             }
 
-            if (langA.macroFamily === langB.macroFamily && langA.macroFamily !== 'Azjatyckie (inne)') {
+            if (langA.macroFamily === langB.macroFamily && langA.macroFamily !== 'Izolowany') {
                 if ((langA.id === 'en' && langB.subFamily === 'Romańska') || (langB.id === 'en' && langA.subFamily === 'Romańska')) {
                     return {
-                        label: 'Pokrewieństwo indoeuropejskie + silne zapożyczenia',
+                        label: 'Pokrewieństwo IE + silne zapożyczenia romańskie',
                         shortHint: 'Wspólny prajęzyk oraz ogromny wpływ leksykalny łaciny i francuskiego.',
-                        description: `Choć ${langA.name} i ${langB.name} należą do innych gałęzi rodziny indoeuropejskiej, dzielą tysiące słów. Po podboju Anglii przez Normanów w 1066 r. język angielski wchłonął ogromną warstwę słownictwa romańskiego i łacińskiego.`
+                        description: `Choć ${langA.name} i ${langB.name} należą do różnych gałęzi rodziny indoeuropejskiej, dzielą tysiące słów. Po podboju Anglii przez Normanów w 1066 r. język angielski przejął ogromną warstwę słownictwa romańskiego i łacińskiego.`
+                    };
+                }
+                if ((langA.subFamily === 'Bałtycka' && langB.subFamily === 'Słowiańska') || (langB.subFamily === 'Bałtycka' && langA.subFamily === 'Słowiańska')) {
+                    return {
+                        label: 'Wspólnota bałtosłowiańska',
+                        shortHint: 'Najbliżej spokrewnione ze sobą gałęzie rodziny indoeuropejskiej.',
+                        description: `${langA.name} (${langA.subFamily}) i ${langB.name} (${langB.subFamily}) tworzą w ramach rodziny indoeuropejskiej bliską nadgałąź bałtosłowiańską. Zachowały liczne wspólne rdzenie (np. woda, ręka, serce, głowa) oraz archaiczny system fleksyjny.`
                     };
                 }
                 return {
-                    label: 'Dalsze pokrewieństwo (wspólna makro-rodzina)',
+                    label: 'Dalsze pokrewieństwo (wspólna makrorodzina)',
                     shortHint: `Wspólna rodzina ${langA.macroFamily}, zachowane prastare rdzenie.`,
                     description: `${langA.name} (${langA.subFamily}) i ${langB.name} (${langB.subFamily}) należą do rodziny ${langA.macroFamily.toLowerCase()}j. Rozdzieliły się tysiące lat temu, ale zachowały wspólne prardzenie (np. nazwy pokrewieństwa, części ciała, podstawowe czasowniki).`
                 };
             }
 
             const pairKey = [langA.id, langB.id].sort().join('-');
+            if (pairKey === 'ar-mt') {
+                return {
+                    label: 'Semicki rdzeń + romańsko-angielska superstrata',
+                    shortHint: 'Jedyny język semicki w UE, wywodzący się z dialektu sycylijsko-arabskiego.',
+                    description: `Maltański wywodzi się historycznie ze średniowiecznego dialektu arabskiego, dzięki czemu zachował semicką morfologię i podstawowe słownictwo, ale przez stulecia wchłonął ponad 50% zapożyczeń włoskich, sycylijskich i angielskich.`
+                };
+            }
             if (pairKey === 'ja-ko') {
                 return {
                     label: 'Silna konwergencja typologiczna i leksykalna',
@@ -535,18 +657,25 @@
                     description: `Mimo braku udowodnionego pokrewieństwa genetycznego, japoński i koreański wykazują uderzające podobieństwo strukturalne (szyk SOV, partykuły, rozbudowany system grzecznościowy) oraz dzielą tysiące zapożyczeń z klasycznego języka chińskiego.`
                 };
             }
-            if (pairKey === 'ja-zh' || pairKey === 'ko-zh') {
+            if (['ja-zh', 'ko-zh', 'vi-zh', 'ja-yue', 'ko-yue', 'vi-yue'].includes(pairKey)) {
                 return {
                     label: 'Głęboki wpływ kulturowo-leksykalny (Sinosfera)',
-                    shortHint: 'Odmienne rodziny i gramatyka, ale ok. 50-60% wspólnych rdzeni leksykalnych.',
-                    description: `Język mandaryński (izolujący, tonalny) należy do innej rodziny niż ${langA.id === 'zh' ? langB.name.toLowerCase() : langA.name.toLowerCase()}, jednak wielowiekowy wpływ pisma chińskiego sprawił, że ponad połowa słownictwa abstrakcyjnego i naukowego ma wspólne korzenie.`
+                    shortHint: 'Odmienne rodziny i gramatyka, ale ok. 50–60% wspólnych rdzeni leksykalnych.',
+                    description: `${langA.name} i ${langB.name} należą do odrębnych rodzin językowych i mają odmienną gramatykę, jednak wielowiekowy wpływ cywilizacji i pisma chińskiego sprawił, że ponad połowa słownictwa abstrakcyjnego ma wspólne korzenie.`
                 };
             }
-            if (pairKey === 'ar-fa' || pairKey === 'ar-tr' || pairKey === 'ar-sw') {
+            if (BALKAN_SPRACHBUND.has(langA.id) && BALKAN_SPRACHBUND.has(langB.id)) {
+                return {
+                    label: 'Bałkańska liga językowa (Sprachbund)',
+                    shortHint: 'Wspólne cechy gramatyczne i słownictwo mimo różnych gałęzi.',
+                    description: `${langA.name} (${langA.subFamily}) i ${langB.name} (${langB.subFamily}) należą do bałkańskiej ligi językowej — wskutek wielowiekowego sąsiedztwa wykształciły wspólne konstrukcje składniowe (np. zanik bezokolicznika, rodzajnik postpozycyjny) oraz wspólną leksykę.`
+                };
+            }
+            if (['ar-fa', 'ar-tr', 'ar-sw', 'fa-tr', 'az-fa', 'ar-ha'].includes(pairKey)) {
                 return {
                     label: 'Silne zapożyczenia kulturowe i religijne',
                     shortHint: 'Różne rodziny językowe, ale bogata wspólna warstwa leksykalna.',
-                    description: `${langA.name} i ${langB.name} pochodzą z zupełnie innych rodzin językowych, ale wielowiekowe kontakty handlowe, naukowe i kulturowe zaowocowały przejęciem tysięcy zapożyczeń arabskich (od 20% do 35% słownictwa).`
+                    description: `${langA.name} i ${langB.name} pochodzą z zupełnie innych rodzin językowych, ale wielowiekowe kontakty handlowe, naukowe i kulturowe zaowocowały przejęciem tysięcy wspólnych wyrazów (od 20% do 35% słownictwa).`
                 };
             }
 
@@ -554,22 +683,24 @@
                 return {
                     label: 'Brak pokrewieństwa (odrębne rodziny)',
                     shortHint: 'Zupełnie niezależne systemy fonetyczne, gramatyczne i leksykalne.',
-                    description: `${langA.name} (${langA.macroFamily}) i ${langB.name} (${langB.macroFamily}) reprezentują niezależne tradycje językowe świata. Ewentualne pojedyncze zbieżności wynikają wyłącznie ze współczesnych internacjonalizmów (np. w nauce czy technologii).`
+                    description: `${langA.name} (${langA.macroFamily}) i ${langB.name} (${langB.macroFamily}) reprezentują niezależne tradycje językowe świata. Ewentualne pojedyncze zbieżności wynikają wyłącznie ze współczesnych internacjonalizmów.`
                 };
             }
 
             return {
-                label: 'Niskie podobieństwo (kontakty historyczne)',
-                shortHint: 'Odrębne rodziny, nieliczne zapożyczenia i podobieństwa typologiczne.',
-                description: `${langA.name} i ${langB.name} należą do różnych rodzin językowych (${langA.macroFamily} vs ${langB.macroFamily}). Wykazują niski poziom zbieżności leksykalnej, wynikający głównie z dawnych szlaków handlowych lub cech typologicznych (np. aglutynacji).`
+                label: 'Niskie podobieństwo (kontakty geograficzne/kulturowe)',
+                shortHint: 'Odrębne rodziny, nieliczne zapożyczenia lub wspólne internacjonalizmy.',
+                description: `${langA.name} (${langA.macroFamily}) i ${langB.name} (${langB.macroFamily}) należą do różnych rodzin językowych. Wykazują niski poziom zbieżności leksykalnej, wynikający z sąsiedztwa geograficznego, dawnych szlaków handlowych lub europejskiej wspólnoty kulturowej.`
             };
         }
 
         // Stan aplikacji
         let currentFilter = 'ALL';
         let currentSort = 'family';
+        let searchQuery = '';
+        let cellSizeMode = 'compact'; // 'compact' (S), 'standard' (M), 'large' (L)
         let showNumbers = true;
-        let selectedPair = { a: 'pl', b: 'cs' };
+        let selectedPair = { a: 'pl', b: 'sk' };
 
         /**
          * Odczytuje wybraną parę z parametrów URL (?a=pl&b=uk), jeśli istnieją
@@ -608,7 +739,27 @@
             let list = [...LANGUAGES];
 
             if (currentFilter !== 'ALL') {
-                list = list.filter(l => l.macroFamily === currentFilter || l.subFamily === currentFilter);
+                if (currentFilter === 'EUROPE' || currentFilter === 'WORLD') {
+                    list = list.filter(l => l.region === currentFilter);
+                } else if (currentFilter === 'Bałtycka_Celtycka_Uralska') {
+                    list = list.filter(l => ['Bałtycka', 'Celtycka', 'Ugrofińska'].includes(l.subFamily));
+                } else if (currentFilter === 'Azja_BliskiWschod') {
+                    list = list.filter(l => ['Indoirańska', 'Semicka', 'Turkijska', 'Chińska', 'Japońska', 'Koreańska', 'Wiet-muong', 'Dajska', 'Malajsko-polinezyjska', 'Drawidyjska'].includes(l.subFamily) && l.id !== 'mt');
+                } else if (currentFilter === 'Afryka') {
+                    list = list.filter(l => ['am', 'sw', 'ha', 'yo'].includes(l.id));
+                } else {
+                    list = list.filter(l => l.macroFamily === currentFilter || l.subFamily === currentFilter);
+                }
+            }
+
+            if (searchQuery.trim() !== '') {
+                const q = searchQuery.trim().toLowerCase();
+                list = list.filter(l =>
+                    l.name.toLowerCase().includes(q) ||
+                    l.countries.toLowerCase().includes(q) ||
+                    l.subFamily.toLowerCase().includes(q) ||
+                    l.macroFamily.toLowerCase().includes(q)
+                );
             }
 
             if (currentSort === 'alpha') {
@@ -626,31 +777,37 @@
         function renderMatrix() {
             const langs = getVisibleLanguages();
             const wrapper = document.getElementById('matrixWrapper');
+            const countBadge = document.getElementById('visibleCountBadge');
+            if (countBadge) {
+                countBadge.textContent = `${langs.length} × ${langs.length}`;
+            }
 
             if (langs.length === 0) {
-                wrapper.innerHTML = `<div class="p-8 text-center text-slate-500">Brak języków spełniających kryteria filtra.</div>`;
+                wrapper.innerHTML = `<div class="p-8 text-center text-slate-500">Brak języków spełniających kryteria wyszukiwania lub filtra.</div>`;
                 return;
             }
 
-            const cellSizeClass = langs.length <= 10
-                ? 'w-14 h-12 text-xs'
-                : langs.length <= 16
-                    ? 'w-11 h-10 text-[11px]'
-                    : 'w-8 h-8 sm:w-9 sm:h-9 text-[10px]';
+            // Rozmiar komórek dopasowany do wybranego trybu S / M / L
+            let cellSizeClass = 'w-6 h-6 sm:w-7 sm:h-7 text-[9px]';
+            if (cellSizeMode === 'standard') {
+                cellSizeClass = 'w-8 h-8 sm:w-9 sm:h-9 text-[10px]';
+            } else if (cellSizeMode === 'large') {
+                cellSizeClass = 'w-11 h-10 sm:w-12 sm:h-11 text-xs';
+            }
 
             let html = `<table class="border-collapse">`;
 
             // Nagłówek kolumn (Oś X)
             html += `<thead><tr>`;
             // Lewy górny róg (sticky w obu osiach)
-            html += `<th class="sticky left-0 top-0 z-30 bg-white dark:bg-slate-900 border-b border-r border-slate-200 dark:border-slate-800 p-2"></th>`;
+            html += `<th class="sticky left-0 top-0 z-30 bg-white dark:bg-slate-900 border-b border-r border-slate-200 dark:border-slate-800 p-1.5"></th>`;
 
             langs.forEach((colLang, colIdx) => {
                 html += `
-                    <th data-col-header="${colIdx}" class="sticky top-0 z-20 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 pb-2 pt-1 px-0.5 align-bottom transition-colors">
-                        <div class="vertical-header mx-auto text-[11px] sm:text-xs font-medium text-slate-600 dark:text-slate-300 flex items-center gap-1 h-24 sm:h-28 justify-start">
+                    <th data-col-header="${colIdx}" title="${colLang.name} (${colLang.countries})" class="sticky top-0 z-20 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 pb-2 pt-1 px-0 align-bottom transition-colors">
+                        <div class="vertical-header mx-auto text-[10px] sm:text-xs font-medium text-slate-600 dark:text-slate-300 flex items-center gap-1 h-24 sm:h-28 justify-start">
                             <span>${colLang.name}</span>
-                            <span class="text-xs">${colLang.flag}</span>
+                            <span class="text-[11px]">${colLang.flag}</span>
                         </div>
                     </th>
                 `;
@@ -663,9 +820,9 @@
                 html += `<tr>`;
                 // Nagłówek wiersza (Oś Y - nieprzezroczysty, sticky po lewej)
                 html += `
-                    <th data-row-header="${rowIdx}" class="sticky left-0 z-20 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 shadow-[4px_0_8px_-4px_rgba(0,0,0,0.15)] dark:shadow-[4px_0_10px_-4px_rgba(0,0,0,0.6)] pr-2.5 pl-2 py-0.5 text-right whitespace-nowrap transition-colors">
-                        <div class="flex items-center justify-end gap-1.5 text-[11px] sm:text-xs font-medium text-slate-700 dark:text-slate-300">
-                            <span class="hidden sm:inline text-[10px] text-slate-400 font-normal">${rowLang.subFamily}</span>
+                    <th data-row-header="${rowIdx}" title="${rowLang.name} — ${rowLang.countries}" class="sticky left-0 z-20 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 shadow-[4px_0_8px_-4px_rgba(0,0,0,0.15)] dark:shadow-[4px_0_10px_-4px_rgba(0,0,0,0.6)] pr-2 pl-2 py-0 text-right whitespace-nowrap transition-colors">
+                        <div class="flex items-center justify-end gap-1.5 text-[10px] sm:text-xs font-medium text-slate-700 dark:text-slate-300">
+                            <span class="hidden md:inline text-[9px] text-slate-400 font-normal">${rowLang.subFamily}</span>
                             <span>${rowLang.name}</span>
                             <span>${rowLang.flag}</span>
                         </div>
@@ -689,7 +846,7 @@
                                 data-lang-b="${colLang.id}"
                                 data-score="${score}"
                                 style="background-color: ${color.bg}; color: ${color.text};"
-                                class="matrix-cell ${cellSizeClass} ${ringClass} rounded-[3px] flex items-center justify-center font-semibold cursor-pointer select-none"
+                                class="matrix-cell ${cellSizeClass} ${ringClass} rounded-[2px] flex items-center justify-center font-semibold cursor-pointer select-none"
                             >
                                 ${showNumbers ? score : ''}
                             </div>
@@ -855,7 +1012,10 @@
             const visibleIds = getVisibleLanguages().map(l => l.id);
             if (!visibleIds.includes(idA) || !visibleIds.includes(idB)) {
                 currentFilter = 'ALL';
+                searchQuery = '';
                 document.getElementById('familyFilter').value = 'ALL';
+                document.getElementById('searchInput').value = '';
+                document.getElementById('clearSearchBtn').classList.add('hidden');
             }
             syncUrlState();
             updateDetailPanel();
@@ -890,6 +1050,35 @@
         });
 
         // Inicjalizacja kontrolek UI
+        const searchInput = document.getElementById('searchInput');
+        const clearSearchBtn = document.getElementById('clearSearchBtn');
+
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            clearSearchBtn.classList.toggle('hidden', searchQuery.length === 0);
+            renderMatrix();
+        });
+
+        clearSearchBtn.addEventListener('click', () => {
+            searchQuery = '';
+            searchInput.value = '';
+            clearSearchBtn.classList.add('hidden');
+            renderMatrix();
+        });
+
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                cellSizeMode = btn.dataset.size;
+                document.querySelectorAll('.size-btn').forEach(b => {
+                    b.classList.remove('bg-white', 'dark:bg-slate-700', 'text-blue-600', 'dark:text-blue-400', 'shadow-sm');
+                    b.classList.add('text-slate-600', 'dark:text-slate-300');
+                });
+                btn.classList.add('bg-white', 'dark:bg-slate-700', 'text-blue-600', 'dark:text-blue-400', 'shadow-sm');
+                btn.classList.remove('text-slate-600', 'dark:text-slate-300');
+                renderMatrix();
+            });
+        });
+
         document.getElementById('familyFilter').addEventListener('change', (e) => {
             currentFilter = e.target.value;
             renderMatrix();
